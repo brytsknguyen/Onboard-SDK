@@ -350,13 +350,14 @@ AdvancedSensing::subscribeFrontStereoVGA(const uint8_t freq,
                   AdvancedSensingProtocol::SELECT_VGA_IMG_CMD_ID);
 
     sendCommonCmd(NULL, 0, AdvancedSensingProtocol::START_CMD_ID);
-  } else if (vehicle_ptr->isM300()) {
+  } 
+  else if (vehicle_ptr->isM300()) {
     DSTATUS("M300 VGA freq is running at a default value at 20Hz. So the "
             "parameter freq is useless here.");
     static M300VGAHandlerData m300handler;
     m300handler.vehicle = vehicle_ptr;
     m300handler.handler = {callback, userData};
-    perception->subscribePerceptionImage(Perception::RECTIFY_FRONT, M300VGAHandleCB, &m300handler);
+    perception->subscribePerceptionImage(Perception::RECTIFY_DOWN, M300VGAHandleCB, &m300handler);
   }
 }
 
